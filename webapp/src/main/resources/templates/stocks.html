@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="pageName='stocks'">
+<div th:replace="fragments/header :: header"></div>
+<body role="document">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+        <div class="jumbotron-content">
+            <h1>Stocks</h1>
+            <p class="jumbotron-lg-only">Create New Stock</p>
+            <form name="create-stockEntity" method="post" action="/stocks">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Stock Name"/>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input step="0.0000001" min="0" type="number" id="price" name="price" class="form-control"
+                           placeholder="49.99"/>
+                </div>
+                <input type="submit"/>
+            </form>
+        </div>
+    </div>
+
+    <div class="alert alert-danger alert-dismissable" th:if="${error}">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Error!</strong> <span th:text="${error}"/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table id="stocksTable" class="table table-striped sortable">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Current Price</th>
+                    <th>Last Time Updated</th>
+                </tr>
+                </thead>
+                <tbody id="stockRows">
+                <tr th:each="stockEntity : ${stocks}"
+                    th:id="stock_row_id_+${stockEntity.id}">
+                    <td th:id="stock_id_+${stockEntity.id}" th:text="${stockEntity.id}"/>
+                    <td th:id="stock_name_+${stockEntity.id}" th:text="${stockEntity.name}"/>
+                    <td th:id="stock_price_+${stockEntity.id}" th:text="${stockEntity.currentPrice}"
+                        data-type="number" th:attr="data-url='/stocks/'+${stockEntity.id}, data-pk=${stockEntity.id}"
+                        data-step="any"
+                        data-title="New Price" class="editable"/>
+                    <td th:id="stock_utime_+${stockEntity.id}" th:text="${stockEntity.lastUpdate}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/bottom :: bottom"></div>
+<script>
+    $(document).ready(function () {
+        $('.editable').each(function () {
+            $(this).editable(
+                {
+                    ajaxOptions: {
+                        type: 'put',
+                        dataType: 'json'
+                    },
+                    success: function (response, newValue) {
+                        var lastUpdateSelector = "#stock_utime_"+response.id;
+                        $(lastUpdateSelector).text(response.lastUpdate);
+                        return true;
+                    }
+                }
+            );
+        });
+    });
+
+
+
+
+</script>
+</body>
+</html>

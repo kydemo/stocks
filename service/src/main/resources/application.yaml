@@ -1,0 +1,16 @@
+spring:
+  application.name: Stocks Service API
+  datasource:
+    url: jdbc:hsqldb:mem:trader;sql.syntax_mys=true
+    driverClassName: org.hsqldb.jdbcDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none #create-drop #liquibase none will handle
+liquibase:
+  enabled: true
+  change-log: classpath:db/changelog.yaml
+server.port: 9090
+server.contextPath: /api
+payconiq.service.properties:
+  stocksTopicName: stocks

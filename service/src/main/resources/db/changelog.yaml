@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - preConditions:
+    dbms: hsqldb
+
+  - changeSet:
+      id: 1
+      author: kaan.yamanyar
+      changes:
+        - sqlFile:
+            path: classpath:db/files/0001_setup.sql

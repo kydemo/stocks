@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="pageName='home'">
+<div th:replace="fragments/header :: header"></div>
+<body role="document">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        <h1>Stocks</h1>
+        <p>
+            Welcome.
+        </p>
+    </div>
+</div>
+<div th:replace="fragments/bottom :: bottom"></div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<div style="display: none" th:fragment="stomp">
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var traderToken = [[${token}]];
+        var traderUsername = [[${username}]];
+
+        /*]]>*/
+
+    </script>
+    <script src="/sockjs.js"></script>
+    <script src="/stomp.js"></script>
+</div>
+</html>

@@ -1,0 +1,8 @@
+spring:
+  application.name: Stocks Web App
+  thymeleaf:
+    cache: false
+server.port: 8080
+payconiq.web.properties:
+  stocksTopicName: stocks
+  apiUrl: http://localhost:9090/api
