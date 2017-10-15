@@ -18,7 +18,7 @@ _**Notes:**_
 * Demo: https://youtu.be/n-MMKmXSc4s
 * Source code: https://github.com/kydemo/stocks
 
-**Similar assignmen tI did with web sockets:**
+**Similar assignment I did with web sockets:**
 
 * Demo: https://youtu.be/2cS7k3yhbFo
 * Source code: https://goo.gl/KfRrZ2
